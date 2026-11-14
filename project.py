@@ -7,7 +7,6 @@ from gtts import gTTS
 import subprocess
 text = 'I need help'
 electrodes = ["Fp1", "Fp2", "F3", "F4", "C3", "C4", "P3", "P4", "O1", "O2"]
-mean = np.mean(electrodes) 
 live = st.toggle("Live readings (refresh every 5 seconds)")
 st.title("Welcome to BCI device manager.")
 st.write("This app is created to manage BCI devices to help human beings, especially disabled people.")
