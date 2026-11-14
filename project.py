@@ -35,7 +35,7 @@ def display_readings():
     filtered = readings[readings["Signal Value"] > 2.5]
     st.write("Filtered data (Signal Value > 2.5):")
     st.dataframe(filtered)
-    if mean > 3.00 :
+    if mean > 2.5 :
         tts = gTTS(text=text, lang='en')
         tts.save("alert.mp3")
         subprocess.run(["cmd", "/c", "start", "", "alert.mp3"], check=False)  # For Windows
