@@ -12,13 +12,14 @@ live = st.toggle("Live readings (refresh every 5 seconds)")
 st.title("Welcome to BCI device manager.")
 st.write("This app is created to manage BCI devices to help human beings, especially disabled people.")
 
-@st.fragment(run_every="5s" if live else None)
+@st.fragment(run_every=5 )
 def display_readings():
     if not live:
         st.info("Turn on live readings to start.")
         return
 
     random_data = [random.uniform(0.5, 5.0) for _ in electrodes]
+    mean = sum(random_data)/ len (random_data)
     readings = pd.DataFrame(
         {
             "Signal Value": [round(value, 2) for value in random_data],
