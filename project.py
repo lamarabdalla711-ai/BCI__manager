@@ -38,7 +38,5 @@ def display_readings():
     if mean > 2.5 :
         tts = gTTS(text=text, lang='en')
         tts.save("alert.mp3")
-        subprocess.run(["cmd", "/c", "start", "", "alert.mp3"], check=False)  # For Windows
-        # os.system("afplay alert.mp3")  # For macOS
-        # os.system("mpg321 alert.mp3")  # For Linux    
+        st.audio("alert.mp3",autoplay = True)    
 display_readings()
