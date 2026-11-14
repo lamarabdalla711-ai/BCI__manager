@@ -7,6 +7,7 @@ from gtts import gTTS
 import subprocess
 text = 'I need help'
 electrodes = ["Fp1", "Fp2", "F3", "F4", "C3", "C4", "P3", "P4", "O1", "O2"]
+mean = np.mean(0.5,5.0)
 live = st.toggle("Live readings (refresh every 5 seconds)")
 st.title("Welcome to BCI device manager.")
 st.write("This app is created to manage BCI devices to help human beings, especially disabled people.")
@@ -28,12 +29,13 @@ def display_readings():
 
     st.write("Latest electrode readings:")
     st.dataframe(readings)
+    st.dataframe(mean)
     st.line_chart(readings)
 
     filtered = readings[readings["Signal Value"] > 2.5]
     st.write("Filtered data (Signal Value > 2.5):")
     st.dataframe(filtered)
-    if np.mean(filtered["Signal Value"]) > 4.5:
+    if mean > 3.00:
         tts = gTTS(text=text, lang='en')
         tts.save("alert.mp3")
         subprocess.run(["cmd", "/c", "start", "", "alert.mp3"], check=False)  # For Windows
